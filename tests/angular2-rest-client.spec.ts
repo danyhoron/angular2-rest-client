@@ -238,7 +238,6 @@ describe('api', () =>
       let reader = new FileReader;
       reader.onload = (e: ProgressEvent) => { expect( (<any>e.target).result ).toEqual(mockData.join('')); };
       reader.readAsText(bodyNamedFile);
-      
     });
     
     const file1 = new File( mockData, mockFilename, {type: 'text/plain'} ),

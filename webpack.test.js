@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var ROOT = path.resolve(__dirname, '.');
 function root(args) 
 {
@@ -26,7 +27,13 @@ module.exports = function(options)
       extensions: ['.ts', '.js'],
       modules: ['test', 'node_modules'],
     },
-
+    plugins: 
+    [
+       new webpack.LoaderOptionsPlugin
+       ({
+         options: { verbose: true, debug: true }
+       })
+    ],
     module: 
     {
       loaders: 
@@ -37,6 +44,7 @@ module.exports = function(options)
          * See: https://github.com/webpack/source-map-loader
          */
         {
+          enforce: 'pre',
           test: /\.js$/,
           loader: 'source-map-loader',
           exclude: 
